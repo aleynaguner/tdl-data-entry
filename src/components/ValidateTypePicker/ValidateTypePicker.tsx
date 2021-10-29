@@ -15,18 +15,18 @@ const ValidateTypePicker = () => {
   ]
 
   useEffect(() => {
-    const validateTypesInfo = validateTypes && validateTypes.map((validateType: any, index: number) => (
+    const validateTypesInfo = validateTypes && validateTypes.map((validateType: any) => (
       <CheckboxInput
-        index={index + 1}
+        id={validateType.id}
         label={validateType.label}
         name="check"
       />
     ))
     setValidateTypesInfo(validateTypesInfo);
-  }, [validateTypes])
+  }, [])
 
   return (
-    <div>
+    <div className="mb-3">
       <p>How would you like to validate profiles ?</p>
       <Form>
         {validateTypesInfo}
