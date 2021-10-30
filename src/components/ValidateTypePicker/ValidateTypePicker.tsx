@@ -1,36 +1,39 @@
 import React, { useState, useEffect } from "react";
 import { Form } from "react-bootstrap";
 import { CheckboxInput } from "../Library/inputs/CheckboxInput";
+import { ReviewTypes } from "../../data/constants";
 
 const ValidateTypePicker = () => {
-  const [validateTypesInfo, setValidateTypesInfo] = useState<any>();
+  const [reviewTypesInfo, setReviewTypesInfo] = useState<any>();
+  const [isSelectAllChecked, setIsSelectAllChecked] = useState(false);
 
-  const validateTypes = [
-    {id:0, label:"Performance Review"},
-    {id:1, label:"Engagement Review"},
-    {id:2, label:"Absenteism Review"},
-    {id:3, label:"Tenure"},
-    {id:4, label:"360 Reviews"},
-    {id:5, label:"Select All"},
-  ]
+  const onClick = (event: any) => {
+    if (event.target.id === "100") {
+      setIsSelectAllChecked(event.target.checked);
+    }
+  };
 
   useEffect(() => {
-    const validateTypesInfo = validateTypes && validateTypes.map((validateType: any) => (
-      <CheckboxInput
-        id={validateType.id}
-        label={validateType.label}
-        name="check"
-      />
-    ))
-    setValidateTypesInfo(validateTypesInfo);
-  }, [])
+    const reviewTypesInfo =
+      ReviewTypes &&
+      ReviewTypes.map((reviewType: any) => (
+        <CheckboxInput
+          id={reviewType.id}
+          label={reviewType.label}
+          onClick={onClick}
+          {...(isSelectAllChecked && { checked: isSelectAllChecked })}
+          disabled={reviewType.id !== 100 && isSelectAllChecked}
+        />
+      ));
+    setReviewTypesInfo(reviewTypesInfo);
+  }, [isSelectAllChecked]);
 
   return (
     <div className="mb-3">
-      <p>How would you like to validate profiles ?</p>
-      <Form>
-        {validateTypesInfo}
-      </Form>
+      <p>
+        <strong>How would you like to validate profiles ?</strong>
+      </p>
+      <Form>{reviewTypesInfo}</Form>
     </div>
   );
 };
