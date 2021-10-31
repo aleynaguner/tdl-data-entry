@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import { CheckboxInput } from "../Library/inputs/CheckboxInput";
 import { ReviewTypes } from "../../data/constants";
 
-const ValidateTypePicker = () => {
+const ValidateTypePicker = (props: any) => {
   const [reviewTypesInfo, setReviewTypesInfo] = useState<any>();
   const [isSelectAllChecked, setIsSelectAllChecked] = useState(false);
 
