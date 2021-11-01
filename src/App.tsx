@@ -9,8 +9,7 @@ import { ReviewTypes } from "./data/constants";
 
 const App = () => {
   const reviewCount = 4;
-  //const selectedReviews = ReviewTypes.filter((review: any) => review.id !== 100).map((review: any) => review);
-  const selectedReviews = ReviewTypes.filter((review: any) => review.id == 0);
+  const selectedReviews = ReviewTypes.filter((review: any) => review.id !== 100).map((review: any) => review);
 
   return (
     <Container>

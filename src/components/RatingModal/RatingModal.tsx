@@ -5,12 +5,12 @@ import { ScoreLine } from "../ScoreLine";
 
 const RatingModal = (props: any) => {
   const [selectedQuestionsInfo, setSelectedQuestionsInfo] = useState<any>();
-  const [pageIndex, setPageIndex] = useState<number>(1);
-  const [pageCount, setPageCount] = useState<number>(props.reviewCount);
+  const [pageIndex, setPageIndex] = useState<number>(0);
   const [totalScore, setTotalScore] = useState<number>(0);
 
+  const pageCount = props.reviewCount;
+
   const onPaginationClick = (event: any) => {
-    debugger
     if (event.target.name === "prevButton" && pageIndex > 1) {
       setPageIndex(pageIndex - 1);
     }
@@ -19,28 +19,27 @@ const RatingModal = (props: any) => {
     }
   };
 
-  const onClick = (event: any) => {
-  };
+  const onClick = (event: any) => {};
 
   useEffect(() => {
     const selectedQuestionsInfo =
       props.selectedReviews &&
-      props.selectedReviews.map((review: any) => (
-        <Row className="mb-3">
-          <ScoreLine
-            selectedReview={review}
-            pageIndex={pageIndex}
-            onClick={onClick}
-            totalScore={totalScore}
-          />
-        </Row>
-      ));
+      props.selectedReviews
+        .filter((review: any) => review.id === pageIndex)
+        .map((review: any) => (
+          <Row className="mb-3">
+            <ScoreLine
+              selectedReview={review}
+              pageIndex={pageIndex}
+              onClick={onClick}
+              totalScore={totalScore}
+            />
+          </Row>
+        ));
     setSelectedQuestionsInfo(selectedQuestionsInfo);
-  }, [props.selectedReviews]);
+  }, [props.selectedReviews, pageIndex]);
 
-  useEffect(() => {
-
-  }, [pageIndex])
+  useEffect(() => {}, [pageIndex]);
 
   return (
     <>

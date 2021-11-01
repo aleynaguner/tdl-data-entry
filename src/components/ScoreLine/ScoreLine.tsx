@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Row, Col, Form, Container } from "react-bootstrap";
 import { RadioInput } from "../Library/inputs/RadioInput";
 
 const ScoreLine = (props: any) => {
+  const [totalScore, setTotalScore] = useState(0);
 
   const onClick = (event: any) => {
 
@@ -33,6 +34,10 @@ const ScoreLine = (props: any) => {
       </Row>
     </>
   ));
+
+  useEffect(() => {
+
+  }, [totalScore])
 
   return (
     <Container className="mb-3 mt-2" fluid>
