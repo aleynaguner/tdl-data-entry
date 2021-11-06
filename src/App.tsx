@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./App.css";
 import { Container, Row, Col } from "react-bootstrap";
 import { ValidateTypePicker } from "./components/ValidateTypePicker";
@@ -8,14 +8,17 @@ import { Summary } from "./components/Summary";
 import { ReviewTypes } from "./data/constants";
 
 const App = () => {
-  const reviewCount = 4;
-  const selectedReviews = ReviewTypes.filter((review: any) => review.id !== 100).map((review: any) => review);
+  const [validateTypes, setValidateTypes] = useState<any>([]);
+  const selectedReviews = ReviewTypes.filter(
+    (review: any) => review.id !== 100
+  ).map((review: any) => review);
+  const reviewCount = selectedReviews.length;
 
   return (
     <Container>
       <Row>
         <Col xs={12} md={8}>
-          <ValidateTypePicker />
+          <ValidateTypePicker validateTypes={validateTypes} />
         </Col>
       </Row>
       <Row>

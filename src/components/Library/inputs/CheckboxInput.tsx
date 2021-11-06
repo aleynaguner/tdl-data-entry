@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Form } from "react-bootstrap";
 
 const CheckboxInput = (props: any) => {
+  
   const onClick = (event: any) => {
     return props.onClick(event);
   };
@@ -14,6 +15,7 @@ const CheckboxInput = (props: any) => {
     <Form.Group className="mb-1" controlId={props.id}>
       <Form.Check
         type="checkbox"
+        className={props.className}
         id={props.id}
         name={props.name}
         label={props.label}
@@ -33,6 +35,7 @@ CheckboxInput.propTypes = {
   checked: PropTypes.bool,
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
+  className: PropTypes.string,
 };
 
 CheckboxInput.defaultProps = {

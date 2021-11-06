@@ -5,12 +5,13 @@ import { ScoreLine } from "../ScoreLine";
 
 const RatingModal = (props: any) => {
   const [selectedQuestionsInfo, setSelectedQuestionsInfo] = useState<any>();
-  const [pageIndex, setPageIndex] = useState<number>(0);
+  const [pageIndex, setPageIndex] = useState<number>(1);
   const [totalScore, setTotalScore] = useState<number>(0);
 
   const pageCount = props.reviewCount;
 
   const onPaginationClick = (event: any) => {
+    debugger;
     if (event.target.name === "prevButton" && pageIndex > 1) {
       setPageIndex(pageIndex - 1);
     }
@@ -25,7 +26,7 @@ const RatingModal = (props: any) => {
     const selectedQuestionsInfo =
       props.selectedReviews &&
       props.selectedReviews
-        .filter((review: any) => review.id === pageIndex)
+        .filter((review: any) => review.id === pageIndex - 1)
         .map((review: any) => (
           <Row className="mb-3">
             <ScoreLine
@@ -54,7 +55,7 @@ const RatingModal = (props: any) => {
               disabled={pageIndex < 2 ? true : false}
             />
           </Col>
-          <Col md={6}></Col>
+          <Col md={6}>{pageIndex}</Col>
           <Col xs={6} md={2}>
             <ReviewPaginationButton
               name="nextButton"
